@@ -3,8 +3,8 @@ Meteor.subscribe("tests");
 var v_array = ["top", "middle", "bottom"];
 var h_array = ["left", "center", "right"];
 
-var vertical = randomVal(v_array);
-var horizontal = randomVal(h_array);
+var valueV = randomVal(v_array);
+var valueH = randomVal(h_array);
 var classV = randomVal(v_array);
 var classH = randomVal(h_array);
 
@@ -17,7 +17,7 @@ function randomVal (array){
 
 // Returns true if user's answer is correct
 function isCorrect (key){
-	if (vertical == classV && horizontal == classH){
+	if (valueV == classV && valueH == classH){
 		return (key == 114); // Was key "r"?
 	}
 	return (key == 119); // Was key "w"?
@@ -29,6 +29,7 @@ function getTime(start, end){
 	return time;
 }
 
+// Increments test number after each test
 function incTestNumber(){
 	var testNum = sessionStorage.testNum;
 	if (testNum === undefined){
@@ -37,13 +38,12 @@ function incTestNumber(){
 	sessionStorage.testNum = parseInt(testNum) + 1;
 }
 
-
 Template.test.helpers({
-	'vertical': function() {
-		return vertical;
+	'valueV': function() {
+		return valueV;
     },
-    'horizontal': function() {
-		return horizontal;
+    'valueH': function() {
+		return valueH;
     },
     'classV': function() {
 		return classV;
@@ -52,6 +52,12 @@ Template.test.helpers({
 		return classH;
     },
 });
+
+Template.test.onRendered(function(){
+	if (sessionStorage.testNum >= 20){
+		Router.go("/score");
+    }
+})
 
 Template.body.events({
 	'keypress': function(event) {
@@ -67,12 +73,7 @@ Template.body.events({
             }
 
             incTestNumber();
-
-            if (sessionStorage.testNum <= 20){
-            	window.location.reload(true);
-            } else{
-            	Router.go("/done");
-            }
+            window.location.reload(true);
         }
     },
 });

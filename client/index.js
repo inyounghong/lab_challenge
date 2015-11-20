@@ -1,6 +1,9 @@
 Template.index.onRendered(function(){
-	window.setTimeout(function () {
-		
+	// Reset user and info
+	sessionStorage.userId = Random.id();
+    sessionStorage.testNum = 0;
+	
+	timeout = window.setTimeout(function () {
         location.href = "/test";
     }, 5000);
 })
@@ -8,11 +11,8 @@ Template.index.onRendered(function(){
 Template.body.events({
 	'keypress': function(event) {
         if (event.charCode == 32) {
-            sessionStorage.userId = Random.id();
-            sessionStorage.testNum = 0;
+            clearTimeout(timeout);
             Router.go("/test");
-
-
         }
     },
 });
