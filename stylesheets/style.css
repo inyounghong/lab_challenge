@@ -1,0 +1,51 @@
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  font-weight: 300;
+  font-size: 20px; }
+
+.padding {
+  padding: 80px 50px;
+  height: 100%;
+  text-align: center; }
+
+h1 {
+  font-weight: 300;
+  margin-bottom: 30px; }
+
+.welcome {
+  text-align: center;
+  padding-top: 100px; }
+
+.wrap {
+  position: relative;
+  height: 100%; }
+
+#test-info {
+  position: absolute;
+  font-size: 30px;
+  font-weight: 300; }
+  #test-info.top {
+    top: 0; }
+  #test-info.middle {
+    top: 50%;
+    margin-top: -10px; }
+  #test-info.bottom {
+    bottom: 0; }
+  #test-info.left {
+    left: 0; }
+  #test-info.center {
+    position: relative; }
+  #test-info.right {
+    right: 0; }
+
+.button {
+  background: #234a32;
+  color: #fff;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 18px; }
+
+/*# sourceMappingURL=style.css.map */
