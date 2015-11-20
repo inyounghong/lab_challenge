@@ -3,7 +3,6 @@ Router.configure({
     layoutTemplate: 'main'
 });
 
-// Define index route
 Router.route('/', {
     template: 'index'
 });
@@ -12,15 +11,20 @@ Router.route('/test', {
     template: 'test'
 });
 
+Router.route('/score', {
+    template: 'score'
+});
+
 Router.route('/done', {
     template: 'done'
 });
 
+// Generating downloadable csv
 Router.route('/csv/:_id', {
   where: 'server',
   action: function () {
     var filename = this.params._id + '.csv';
-    var fileData = "";
+    var fileData = "User Id, Response Time (Seconds), Correct?\r\n";
 
     var headers = {
       'Content-type': 'text/csv',
@@ -33,17 +37,4 @@ Router.route('/csv/:_id', {
     this.response.writeHead(200, headers);
     return this.response.end(fileData);
   }
-});
-
-// POST ROUTES
-
-// Individual
-Router.route('/post/:_id', {
-  template: 'post',
-  waitOn: function() {
-        return Meteor.subscribe('posts', this.params._id);
-    },
-	data: function(){
-	    return Posts.findOne(this.params._id);
-	}
 });
