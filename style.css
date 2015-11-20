@@ -1,0 +1,36 @@
+html {
+  height: 100%; }
+
+body {
+  height: 100%; }
+
+.padding {
+  padding: 50px; }
+
+.welcome {
+  text-align: center;
+  padding-top: 100px; }
+
+.wrap {
+  position: relative;
+  height: 100%; }
+
+#test-info {
+  position: absolute;
+  font-size: 20px; }
+  #test-info.top {
+    top: 0; }
+  #test-info.middle {
+    top: 50%;
+    margin-top: -10px; }
+  #test-info.bottom {
+    bottom: 0; }
+  #test-info.left {
+    left: 0; }
+  #test-info.center {
+    left: 50%;
+    margin-left: -50px; }
+  #test-info.right {
+    right: 0; }
+
+/*# sourceMappingURL=style.css.map */
