@@ -1,5 +1,7 @@
 Meteor.subscribe("tests");
 
+var newRandomsDep = new Tracker.Dependency();
+
 var v_array = ["top", "middle", "bottom"];
 var h_array = ["left", "center", "right"];
 
@@ -9,6 +11,14 @@ var classV = randomVal(v_array);
 var classH = randomVal(h_array);
 
 var startTime = new Date();
+
+function newRandom(){
+	valueV = randomVal(v_array);
+	valueH = randomVal(h_array);
+	classV = randomVal(v_array);
+	classH = randomVal(h_array);
+	newRandomsDep.changed();
+}
 
 // Returns random value from array
 function randomVal (array){
@@ -40,28 +50,30 @@ function incTestNumber(){
 
 Template.test.helpers({
 	'valueV': function() {
+		newRandomsDep.depend();
 		return valueV;
     },
     'valueH': function() {
+    	newRandomsDep.depend();
 		return valueH;
     },
     'classV': function() {
+    	newRandomsDep.depend();
 		return classV;
     },
     'classH': function() {
+    	newRandomsDep.depend();
 		return classH;
     },
 });
 
-Template.test.onRendered(function(){
-	if (sessionStorage.testNum >= 20){
-		Router.go("/score");
-    }
-})
 
 Template.body.events({
 	'keypress': function(event) {
 		// Presses "w" or "r"
+		if (sessionStorage.testNum >= 20){
+			Router.go("/score");
+	    }
         if (Router.current().route._path == "/test" && (event.charCode == 119 || event.charCode == 114)) { 
 
         	var time = getTime(startTime, new Date());
@@ -73,7 +85,7 @@ Template.body.events({
             }
 
             incTestNumber();
-            window.location.reload(true);
+            newRandom();
         }
     },
 });
