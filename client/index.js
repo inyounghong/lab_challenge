@@ -10,7 +10,7 @@ Template.index.onRendered(function(){
 
 Template.body.events({
 	'keypress': function(event) {
-        if (Router.current().route._path == "/test" && event.charCode == 32) {
+        if (Router.current().route._path == "/" && event.charCode == 32) {
             clearTimeout(timeout);
             Router.go("/test");
         }
