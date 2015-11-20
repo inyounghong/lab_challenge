@@ -62,7 +62,7 @@ Template.test.onRendered(function(){
 Template.body.events({
 	'keypress': function(event) {
 		// Presses "w" or "r"
-        if (event.charCode == 119 || event.charCode == 114) { 
+        if (Router.current().route._path == "/test" && (event.charCode == 119 || event.charCode == 114)) { 
 
         	var time = getTime(startTime, new Date());
 
