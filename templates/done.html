@@ -1,6 +1,15 @@
+<template name="score">
+	<div class="container">
+		<h1>Your Score: {{userScore}}/20</h1>
+		<a href="done" class="button">Continue</a>
+	</div>
+</template>
+
 <template name="done">
 	<div class="container">
 		<h1>Thank you for participating!</h1>
-		<div class="button">Download CSV</div>
+		<a href="csv/{{userId}}" class="button">Download CSV</a>
+		<br><br>
+		<a href="/">Start Over</a>
 	</div>
 </template>
